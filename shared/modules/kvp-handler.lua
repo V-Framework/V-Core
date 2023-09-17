@@ -30,7 +30,7 @@ local mt = {
 			t[k] = nil
 			if type(v) == 'table' then
 				-- Creates a proxy
-				obj.values[k] = CreateKVP(obj.path .. k .. ':')
+				obj.values[k] = CreateKvp(obj.path .. k .. ':')
 				-- Iterates content
 				for i in pairs(v) do
 					-- Forces (__newindex) to repeat this proccess recurively
@@ -75,6 +75,8 @@ function CreateKvp(path)
 	-- Proxifies the object
 	return setmetatable(obj, mt)
 end
+
+
 
 function KVP(key)
 	-- If the object already exist is returned
