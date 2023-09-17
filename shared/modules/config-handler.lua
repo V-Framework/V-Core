@@ -1,19 +1,19 @@
-Vcore.ConfigStorage = {
+vCore.ConfigStorage = {
     client = {},
     server = {}
 }
 
-function Vcore:GetConfigOption(name)
-    return Vcore.ConfigStorage[self.context][name]
+function vCore:GetConfigOption(name)
+    return vCore.ConfigStorage[self.context][name]
 end
 
-function Vcore:GetConfigValue(name)
+function vCore:GetConfigValue(name)
     return self:GetConfigOption(name).value
 end
 
-function Vcore:AddConfigOption(name, label, defaultData, onChange)
+function vCore:AddConfigOption(name, label, defaultData, onChange)
     local existingData = self:GetConfigOption(name)
-    Vcore.ConfigStorage[self.context][name] = {
+    vCore.ConfigStorage[self.context][name] = {
         label = label,
         defaultData = defaultData,
         value = existingData.value or defaultData,
@@ -24,9 +24,9 @@ function Vcore:AddConfigOption(name, label, defaultData, onChange)
     end
 end
 
-function Vcore:SetConfigValue(name, value)
+function vCore:SetConfigValue(name, value)
     local configOption = self:GetConfigOption(name)
-    Vcore.ConfigStorage[self.context][name].value = value
+    vCore.ConfigStorage[self.context][name].value = value
     if configOption.onChange then
         configOption.onChange(value)
     end
