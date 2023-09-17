@@ -6,19 +6,19 @@ local Wait = Wait
 local GetVehiclePedIsIn = GetVehiclePedIsIn
 local GetSelectedPedWeapon = GetSelectedPedWeapon
 
-Vcore.cache = {}
+vCore.cache = {}
 
-Vcore.cache.playerId = PlayerId()
-Vcore.cache.serverId = GetPlayerServerId(Vcore.cache.playerId)
-Vcore.cache.playerPed = PlayerPedId()
+vCore.cache.playerId = PlayerId()
+vCore.cache.serverId = GetPlayerServerId(vCore.cache.playerId)
+vCore.cache.playerPed = PlayerPedId()
 
-function Vcore.cache:SetValue(key, value)
+function vCore.cache:SetValue(key, value)
     self[key] = value
 end
 
-function Vcore.cache:StartUpdateLoops()
+function vCore.cache:StartUpdateLoops()
     CreateThread(function()
-        while Vcore.playerLoaded do
+        while vCore.playerLoaded do
             Wait(150)
             local PlayerPed = PlayerPedId()
             if PlayerPed ~= self.playerPed then
