@@ -11,6 +11,9 @@ vCore.cache = {}
 vCore.cache.playerId = PlayerId()
 vCore.cache.serverId = GetPlayerServerId(vCore.cache.playerId)
 vCore.cache.playerPed = PlayerPedId()
+vCore.cache.currentVehicle = false
+vCore.cache.currentWeapon = GetSelectedPedWeapon(vCore.cache.playerPed)
+
 
 function vCore.cache:SetValue(key, value)
     self[key] = value

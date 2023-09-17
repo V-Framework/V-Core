@@ -1,6 +1,6 @@
 function vCore:SavePlayer(player)
     local xPlayer = self.Players[player]
-    local parameters <const> = {
+    local parameters = {
 		xPlayer.group,
         xPlayer.metadata,
 		xPlayer.identifier
@@ -32,5 +32,5 @@ local baseConfig = {
 
 for i=1, #baseConfig do
     local config = baseConfig[i]
-    vCore:AddConfigOption(config.name, config.label, config.default, config.onChange)
+    vCore:AddConfigOption(config.name, config.label, config.default)
 end

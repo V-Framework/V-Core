@@ -12,29 +12,6 @@ local function OnPlayerConnecting(_, _, deferrals)
         return deferrals.done("No Identifier Found.")
     end
 
-    --[[
-    local user = MySQL.query.await("SELECT * FROM `users` WHERE `identifier` = ?", {license})
-    
-    if user and user[1] then
-        local userInfo = user[1]
-        vCore:CreatePlayer(license, {
-            source = source,
-            group = userInfo.group,
-            metadata = json.decode(userInfo.metadata)
-        })
-    else
-        MySQL.insert("INSERT INTO `users` (`identifier`, `group`, `metadata`) VALUES (?, ?, ?)", {
-            license,
-            "user",
-            json.encode({})
-        })
-        vCore:CreatePlayer(license, {
-            source = source,
-            group = "user",
-            metadata = {}
-        })
-    end]]
-
     deferrals.done()
 end
 

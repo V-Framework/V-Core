@@ -7,7 +7,7 @@ if vCore.context == "server" then
         vCore.ConfigStorage = {}
     end
 
-    function vCore:AddConfigOption(name, context, label, defaultData, onChange)
+    function vCore:AddConfigOption(name, label, defaultData)
         local existingData = self:GetConfigOption(name)
         vCore.ConfigStorage[name] = {
             label = label,
