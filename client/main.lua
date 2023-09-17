@@ -1,5 +1,5 @@
 AddEventHandler('populationPedCreating', function()
-    if not vCore:GetConfigValue('npc_population') then
+    if not vCore:GetConfigValue('client.npc_population') then
         CancelEvent()
     end
 end)
@@ -15,7 +15,7 @@ function vCore:RegisterNetEvent(event, callback)
 end
 
 vCore:RegisterNetEvent("vCore:ConfigChanged", function(name, value)
-    if name == "npc_licenseplate" then
+    if name == "client.npc_licenseplate" then
         SetDefaultVehicleNumberPlateTextPattern(-1, value)
     end
 end)

@@ -19,12 +19,12 @@ end
 
 local baseConfig = {
     {
-        name = "npc_population",
+        name = "server.npc_population",
         label = "Enable NPC Population",
         default = GetConvarInt("vCore:npc_population", 1) == 1,
     },
     {
-        name = "npc_licenseplate",
+        name = "client.npc_licenseplate",
         label = "Defualt Licencse Plate",
         default = GetConvar("vCore:npc_licenseplate", ".... ..."),
     }

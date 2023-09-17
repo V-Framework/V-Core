@@ -7,14 +7,6 @@ if vCore.context == "server" then
         vCore.ConfigStorage = {}
     end
 
-    function vCore:GetConfigOption(name)
-        return vCore.ConfigStorage[name]
-    end
-
-    function vCore:GetConfigValue(name)
-        return self:GetConfigOption(name).value
-    end
-
     function vCore:AddConfigOption(name, context, label, defaultData, onChange)
         local existingData = self:GetConfigOption(name)
         vCore.ConfigStorage[name] = {
@@ -24,6 +16,9 @@ if vCore.context == "server" then
         }
     end
 
+    ---@param name string
+    ---@param value any
+    ---@return nil
     function vCore:SetConfigValue(name, value)
         local existingData = self:GetConfigOption(name)
         vCore.ConfigStorage[name].value = value
@@ -36,15 +31,16 @@ if vCore.context == "server" then
     end)
 else
     vCore.ConfigStorage = lib.callback.await("vCore:getConfigValues", false)
-    function vCore:GetConfigOption(name)
-        return self.ConfigStorage[name]
-    end
-
-    function vCore:GetConfigValue(name)
-        return self:GetConfigOption(name)?.value
-    end
 
     vCore:RegisterNetEvent("vCore:ConfigChanged", function(name, value)
         vCore.ConfigStorage[name].value = value
     end)
+end
+
+function vCore:GetConfigOption(name)
+    return self.ConfigStorage[name]
+end
+
+function vCore:GetConfigValue(name)
+    return self:GetConfigOption(name)?.value
 end

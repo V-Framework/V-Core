@@ -1,6 +1,6 @@
 -- Add Config option for whether or not to check for License
 
-vCore:AddConfigOption("join_check", "Check for License", GetConvarInt("vCore:join_check", 1) == 1)
+vCore:AddConfigOption("server.join_check", "Check for License", GetConvarInt("vCore:join_check", 1) == 1)
 
 local function OnPlayerConnecting(_, _, deferrals)
     local source = source
@@ -8,7 +8,7 @@ local function OnPlayerConnecting(_, _, deferrals)
     deferrals.defer()
     Wait(0)
 
-    if vCore:GetConfigValue("join_check") and not license then
+    if vCore:GetConfigValue("server.join_check") and not license then
         return deferrals.done("No Identifier Found.")
     end
 
