@@ -19,3 +19,11 @@ vCore:RegisterNetEvent("vCore:ConfigChanged", function(name, value)
         SetDefaultVehicleNumberPlateTextPattern(-1, value)
     end
 end)
+
+CreateThread(function()
+    exports.spawnmanager:setAutoSpawn(false)
+    while not vCore.ConfigStorage do
+        Wait(0)
+    end
+    SetDefaultVehicleNumberPlateTextPattern(-1, vCore:GetConfigValue('client.npc_licenseplate'))
+end)

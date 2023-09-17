@@ -21,9 +21,11 @@ local function OnPlayerJoined()
     local source = source
     local license = GetPlayerIdentifierByType(source, "license")
     local user = MySQL.query.await("SELECT * FROM `users` WHERE `identifier` = ?", {license})
+    local xPlayer = nil
+    local isNew = false
     if user and user[1] then
         local userInfo = user[1]
-        vCore:CreatePlayer(license, {
+        xPlayer = vCore:CreatePlayer(license, {
             source = source,
             group = userInfo.group,
             metadata = json.decode(userInfo.metadata)
@@ -34,12 +36,15 @@ local function OnPlayerJoined()
             "user",
             json.encode({})
         })
-        vCore:CreatePlayer(license, {
+        xPlayer = vCore:CreatePlayer(license, {
             source = source,
             group = "user",
             metadata = {}
         })
+        isNew = true
     end
+    vCore.Players[source] = xPlayer
+    TriggerClientEvent("vCore:playerLoaded", source, xPlayer, isNew)
 end
 
 AddEventHandler("playerJoining", OnPlayerJoined)
