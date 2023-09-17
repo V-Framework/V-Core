@@ -13,6 +13,10 @@ function vCore:LoadPlayer(PlayerData, isNew)
         self.cache:StartUpdateLoops()
         ShutdownLoadingScreen()
         ShutdownLoadingScreenNui()
+
+        if not vCore:GetPlayerPreference("language") then
+            vCore:SetPlayerPreference("language", "en")
+        end
     end)
 end
 
