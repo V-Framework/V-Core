@@ -43,7 +43,7 @@ function vCore:CreatePlayer(identifer, data)
     function xPlayer:TriggerEvent(event, ...)
         TriggerClientEvent(event, self.source, ...)
     end
-    
+
     return xPlayer
 end
 

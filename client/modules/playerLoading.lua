@@ -1,16 +1,15 @@
-function vCore:LoadPlayer(PlayerData, isNew)
-    self.PlayerData = PlayerData
+function vCore:LoadPlayer(playerData, isNew)
+    self.playerData = playerData
     exports.spawnmanager:spawnPlayer({
-        x = self.PlayerData.coords.x,
-        y = self.PlayerData.coords.y,
-        z = self.PlayerData.coords.z + 0.25,
-        heading = self.PlayerData.coords.heading,
+        x = self.playerData.coords.x,
+        y = self.playerData.coords.y,
+        z = self.playerData.coords.z + 0.25,
+        heading = self.playerData.coords.heading,
         model = `mp_m_freemode_01`,
         skipFade = false
     }, function()
         self.playerLoaded = true
 
-        self.cache:StartUpdateLoops()
         ShutdownLoadingScreen()
         ShutdownLoadingScreenNui()
 
