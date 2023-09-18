@@ -28,6 +28,7 @@ local function OnPlayerJoined()
         xPlayer = vCore:CreatePlayer(license, {
             source = source,
             group = userInfo.group,
+            coords = json.decode(userInfo.coords),
             metadata = json.decode(userInfo.metadata)
         })
     else
@@ -39,6 +40,7 @@ local function OnPlayerJoined()
         xPlayer = vCore:CreatePlayer(license, {
             source = source,
             group = "user",
+            coords = json.decode(vCore:GetConfigValue("server.defualtspawn")),
             metadata = {}
         })
         isNew = true

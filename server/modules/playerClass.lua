@@ -25,7 +25,7 @@ function vCore:CreatePlayer(identifer, data)
     xPlayer.source = data.source
     xPlayer.group = data.group
     xPlayer.name = GetPlayerName(data.source)
-    xPlayer.coords = { x = 222.2027, y = -864.0162, z = 30.2922, heading = 1.0 }
+    xPlayer.coords = {x = data.coords[1], y = data.coords[2], z = data.coords[3], heading = data.coords[4]}
     xPlayer.metadata = data.metadata
 
     function xPlayer:Set(key, value)
