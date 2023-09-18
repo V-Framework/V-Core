@@ -36,6 +36,12 @@ function vCore:CreatePlayer(identifer, data)
         return self[key]
     end
 
+    function xPlayer:SetGroup(group)
+        lib.addPrincipal(('identifier.%s'):format(self.identifier), ('group.%s'):format(self.group))
+        self.group = group
+        lib.removePrincipal(('identifier.%s'):format(self.identifier), ('group.%s'):format(self.group))
+    end
+
     function xPlayer:HasGroup(group)
         return self.group == group
     end
@@ -44,6 +50,7 @@ function vCore:CreatePlayer(identifer, data)
         TriggerClientEvent(event, self.source, ...)
     end
 
+    lib.addPrincipal(('identifier.%s'):format(self.identifier), ('group.%s'):format(self.group))
     return xPlayer
 end
 
