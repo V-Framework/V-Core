@@ -1,3 +1,5 @@
+vCore.keybindings = {}
+
 AddEventHandler('populationPedCreating', function()
     if not vCore:GetConfigValue('client.npc_population') then
         CancelEvent()

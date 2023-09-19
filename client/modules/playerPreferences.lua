@@ -22,7 +22,7 @@ function vCore:PreferencesMenu()
             key = key,
         }
     end
-    
+
     lib.registerMenu({
         id = 'vCore.PreferencesMenu',
         title = self:Translate('preferences_title'),
@@ -40,3 +40,12 @@ function vCore:PreferencesMenu()
     end)
     lib.showMenu('vCore.PreferencesMenu')
 end
+
+vCore.keybindings["PlayerPreferences"] = lib.addKeybind({
+    name = 'PlayerPreferences',
+    description = 'Open the Preferences Menu',
+    defaultKey = 'F7',
+    onPressed = function()
+        vCore:PreferencesMenu()
+    end,
+})
