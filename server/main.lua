@@ -30,7 +30,7 @@ local baseConfig = {
     },
     {
         name = "client.npc_licenseplate",
-        label = "Defualt Licencse Plate",
+        label = "Defualt License Plate",
         default = GetConvar("vCore:npc_licenseplate", ".... ..."),
     },
 	{
