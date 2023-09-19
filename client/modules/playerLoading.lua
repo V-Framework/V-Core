@@ -16,6 +16,11 @@ function vCore:LoadPlayer(playerData, isNew)
         if not vCore:GetPlayerPreference("language") then
             vCore:SetPlayerPreference("language", "en")
         end
+
+        if vCore:GetConfigValue("client.wanted_level") then
+            ClearPlayerWantedLevel(cache.playerId)
+            SetMaxWantedLevel(0)
+        end
     end)
 end
 

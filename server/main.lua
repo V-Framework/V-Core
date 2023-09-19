@@ -29,6 +29,11 @@ local baseConfig = {
         default = GetConvar("vCore:npc_licenseplate", ".... ..."),
     },
 	{
+        name = "client.wanted_level",
+        label = "Disable Wanted Level",
+        default = GetConvarInt("vCore:wanted_level", 1) == 1,
+    },
+	{
         name = "server.defualtspawn",
         label = "Defualt Spawn Location",
         default = GetConvar("vCore:defualtspawn", json.encode({222.2027, -864.0162, 30.2922, 1.0})),

@@ -18,6 +18,10 @@ vCore:RegisterNetEvent("vCore:ConfigChanged", function(name, value)
     if name == "client.npc_licenseplate" then
         SetDefaultVehicleNumberPlateTextPattern(-1, value)
     end
+    if name == "client.wanted_level" then
+        ClearPlayerWantedLevel(cache.playerId)
+        SetMaxWantedLevel(value and 0 or 5)
+    end
 end)
 
 CreateThread(function()
