@@ -6,7 +6,7 @@ if vCore.context == "server" then
     if not vCore.ConfigStorage then
         vCore.ConfigStorage = {}
     end
-
+ 
     function vCore:AddConfigOption(name, label, defaultData)
         local existingData = self:GetConfigOption(name)
         vCore.ConfigStorage[name] = {
@@ -29,12 +29,34 @@ if vCore.context == "server" then
     lib.callback.register('vCore:getConfigValues', function()
         return vCore.ConfigStorage
     end)
+
+    lib.callback.register('vCore:setConfigValue', function(src, name, value)
+        local xPlayer = vCore:GetPlayerFromId(src)
+        if not xPlayer:HasGroup("admin") then
+            return false
+        end
+        vCore:SetConfigValue(name, value)
+        return true
+    end)
 else
     vCore.ConfigStorage = lib.callback.await("vCore:getConfigValues", false)
 
     vCore:RegisterNetEvent("vCore:ConfigChanged", function(name, value)
         vCore.ConfigStorage[name].value = value
     end)
+
+    ---@param name string
+    ---@param value any
+    ---@return nil
+    function vCore:SetConfigValue(name, value)
+        local changed = lib.callback.await("vCore:setConfigValue", false, name, value)
+        local notification = self:Translate(changed and "config_changed" or "config_not_changed", name, value)
+        lib.notify({
+            title = self:Translate("config_title"),
+            description = notification,
+            type = changed and "success" or "error",
+        })
+    end
 end
 
 function vCore:GetConfigOption(name)
