@@ -23,6 +23,11 @@ local baseConfig = {
         label = "Enable NPC Population",
         default = GetConvarInt("vCore:npc_population", 1) == 1,
     },
+	{
+        name = "client.default_skin",
+        label = "Defualt Skin Configuration",
+        default = GetConvar("vCore:default_skin", json.encode({222.2027, -864.0162, 30.2922, 1.0})), -- TODO: Add Default Skin
+    },
     {
         name = "client.npc_licenseplate",
         label = "Defualt Licencse Plate",

@@ -27,6 +27,7 @@ function vCore:CreatePlayer(identifer, data)
     xPlayer.name = GetPlayerName(data.source)
     xPlayer.coords = {x = data.coords[1], y = data.coords[2], z = data.coords[3], heading = data.coords[4]}
     xPlayer.metadata = data.metadata
+    xPlayer.skin = data.skin
 
     function xPlayer:Set(key, value)
         self[key] = value

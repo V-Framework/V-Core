@@ -29,6 +29,7 @@ local function OnPlayerJoined()
             source = source,
             group = userInfo.group,
             coords = json.decode(userInfo.coords),
+            skin = json.decode(userInfo.skin),
             metadata = json.decode(userInfo.metadata)
         })
     else
@@ -41,6 +42,7 @@ local function OnPlayerJoined()
             source = source,
             group = "user",
             coords = json.decode(vCore:GetConfigValue("server.defualtspawn")),
+            skin = {},
             metadata = {}
         })
         isNew = true
