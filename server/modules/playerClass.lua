@@ -32,6 +32,14 @@ function vCore:CreatePlayer(identifer, data)
         self[key] = value
     end
 
+    function xPlayer:SetMetadata(key, value)
+        self.metadata[key] = value
+    end
+
+    function xPlayer:GetMetadata(key)
+        return self.metadata[key]
+    end
+
     function xPlayer:Get(key)
         return self[key]
     end
