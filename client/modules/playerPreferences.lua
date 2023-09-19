@@ -6,6 +6,7 @@ end
 
 function vCore:SetPlayerPreference(key, value)
     self.Preferences[key] = value
+    TriggerEvent("vCore:PlayerPreferenceChanged", key, value)
 end
 
 function vCore:GetPlayerPreference(key)
