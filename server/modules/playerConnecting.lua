@@ -33,10 +33,12 @@ local function OnPlayerJoined()
             metadata = json.decode(userInfo.metadata)
         })
     else
-        MySQL.insert("INSERT INTO `users` (`identifier`, `group`, `metadata`) VALUES (?, ?, ?)", {
+        MySQL.insert("INSERT INTO `users` (`identifier`, `group`, `metadata`, `skin,` `coords`) VALUES (?, ?, ?, ?, ?)", {
             license,
             "user",
-            json.encode({})
+            json.encode({}),
+            json.encode({}),
+            json.encode(json.decode(vCore:GetConfigValue("server.defualtspawn"))),
         })
         xPlayer = vCore:CreatePlayer(license, {
             source = source,

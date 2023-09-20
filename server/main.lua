@@ -3,11 +3,13 @@ function vCore:SavePlayer(player)
     local parameters = {
 		xPlayer.group,
         xPlayer.metadata,
+        json.encode(xPlayer.coords),
+        json.encode(xPlayer.skin),
 		xPlayer.identifier
 	}
 
 	MySQL.prepare(
-		'UPDATE `users` SET group` = ?, `metadata` = ? WHERE `identifier` = ?',
+		'UPDATE `users` SET group` = ?, `metadata` = ?, `coords` = ?, `skin` = ? WHERE `identifier` = ?',
 		parameters,
 		function(affectedRows)
 			if affectedRows == 1 then
