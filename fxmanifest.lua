@@ -15,6 +15,7 @@ shared_scripts {
 
 client_scripts {
 	"client/modules/*.lua",
+	"translations/*.lua",
 	'client/*.lua',
 }
 
