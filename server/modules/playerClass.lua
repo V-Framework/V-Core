@@ -1,6 +1,13 @@
 -- @class
 -- Player Class
-vCore.Players = {}
+vCore.Players = setmetatable({}, {
+    __index = function(self, key)
+        return rawget(self, tostring(key))
+    end,
+    __newindex = function(self, key, value)
+        rawset(self, tostring(key), value)
+    end 
+})
 
 ---@class ExtendedPlayer
 ---@field identifier string
@@ -46,9 +53,10 @@ function vCore:CreatePlayer(identifer, data)
     end
 
     function xPlayer:SetGroup(group)
-        lib.addPrincipal(('identifier.%s'):format(self.identifier), ('group.%s'):format(self.group))
+        lib.addPrincipal('identifier.'.. self.identifier, 'group.'.. self.group)
         self.group = group
-        lib.removePrincipal(('identifier.%s'):format(self.identifier), ('group.%s'):format(self.group))
+        lib.removePrincipal('identifier.'.. self.identifier, 'group.'.. self.group)
+
     end
 
     function xPlayer:HasGroup(group)
@@ -59,27 +67,28 @@ function vCore:CreatePlayer(identifer, data)
         TriggerClientEvent(event, self.source, ...)
     end
 
-    lib.addPrincipal(('identifier.%s'):format(self.identifier), ('group.%s'):format(self.group))
+    lib.addPrincipal('identifier.'.. self.identifier, 'group.'.. self.group)
+
     return xPlayer
 end
 
 ---@param player number
 ---@return ExtendedPlayer
 function vCore:GetPlayerFromId(player)
-    if type(player) ~= "number" then
-        player = tonumber(player)
-    end
     return self.Players[player]
 end
 
 ---@param identifier string
 ---@return ExtendedPlayer|nil
 function vCore:GetPlayerFromIdentifier(identifier)
-    for _, player in pairs(self.Players) do
+
+    for i = 1, #self.Players do 
+        local player = self.Players[i]
         if player.identifier == identifier then
             return player
         end
-    end
+    end 
+
     return nil
 end
 
