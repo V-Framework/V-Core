@@ -24,6 +24,4 @@ function vCore:LoadPlayer(playerData, isNew)
     end)
 end
 
-vCore:RegisterNetEvent("vCore:playerLoaded", function(...)
-    vCore:LoadPlayer(...)
-end)
+vCore:RegisterNetEvent("vCore:playerLoaded", vCore:LoadPlayer)
